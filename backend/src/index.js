@@ -21,7 +21,13 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(cors({
   origin: function(origin, callback) {
-    // Permetti richieste da Vite su qualsiasi porta (5173, 5174, etc)
+    // In produzione, permetti tutti gli origin (il frontend è servito dallo stesso server)
+    if (process.env.NODE_ENV === 'production') {
+      callback(null, true);
+      return;
+    }
+    
+    // In development, permetti solo localhost
     const allowedOrigins = [
       'http://localhost:5173',
       'http://localhost:5174',

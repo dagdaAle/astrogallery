@@ -14,7 +14,8 @@ export async function initDatabase() {
     console.log('🔍 Controllo inizializzazione database...');
     
     // Controlla se le tabelle esistono già
-    const [tables] = await db.query('SHOW TABLES');
+    const result = await db.query('SHOW TABLES');
+    const tables = result.rows || [];
     
     if (tables.length > 0) {
       console.log('✅ Database già inizializzato');
