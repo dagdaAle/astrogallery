@@ -4,16 +4,14 @@ import { useAuth } from '../context/AuthContext';
 import './Login.css';
 
 function Login() {
-  const [isRegister, setIsRegister] = useState(false);
   const [formData, setFormData] = useState({
-    username: '',
     email: '',
     password: '',
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const { login, register } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -30,12 +28,7 @@ function Login() {
     setError('');
 
     try {
-      let result;
-      if (isRegister) {
-        result = await register(formData.username, formData.email, formData.password);
-      } else {
-        result = await login(formData.email, formData.password);
-      }
+      const result = await login(formData.email, formData.password);
 
       if (result.success) {
         navigate('/admin');
@@ -54,28 +47,13 @@ function Login() {
       <div className="login-container">
         <div className="login-header">
           <h1>[ ASTROGALLERY ADMIN ]</h1>
-          <p>{isRegister ? 'Crea nuovo account' : 'Accedi al pannello'}</p>
+          <p>Accedi al pannello admin</p>
         </div>
 
         <form onSubmit={handleSubmit} className="login-form">
           {error && (
             <div className="error-message">
               &gt; ERROR: {error}
-            </div>
-          )}
-
-          {isRegister && (
-            <div className="form-group">
-              <label>&gt; USERNAME</label>
-              <input
-                type="text"
-                name="username"
-                value={formData.username}
-                onChange={handleChange}
-                required
-                placeholder="Username"
-                disabled={loading}
-              />
             </div>
           )}
 
@@ -107,21 +85,8 @@ function Login() {
           </div>
 
           <button type="submit" className="submit-button" disabled={loading}>
-            {loading ? '[ LOADING... ]' : isRegister ? '[ REGISTRATI ]' : '[ ACCEDI ]'}
+            {loading ? '[ LOADING... ]' : '[ ACCEDI ]'}
           </button>
-
-          <div className="toggle-mode">
-            <button
-              type="button"
-              onClick={() => {
-                setIsRegister(!isRegister);
-                setError('');
-              }}
-              className="toggle-button"
-            >
-              {isRegister ? '> Hai già un account? Accedi' : '> Non hai un account? Registrati'}
-            </button>
-          </div>
 
           <Link to="/" className="back-link">
             &lt; Torna alla gallery

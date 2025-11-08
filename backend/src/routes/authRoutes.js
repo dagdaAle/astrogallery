@@ -5,53 +5,12 @@ import { createUser, findUserByEmail, verifyPassword } from '../models/userModel
 
 const router = express.Router();
 
-// Registrazione
-router.post('/register',
-  [
-    body('username').trim().isLength({ min: 3, max: 50 }).withMessage('Username deve essere tra 3 e 50 caratteri'),
-    body('email').isEmail().normalizeEmail().withMessage('Email non valida'),
-    body('password').isLength({ min: 6 }).withMessage('Password deve essere almeno 6 caratteri')
-  ],
-  async (req, res) => {
-    try {
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
-      }
-
-      const { username, email, password } = req.body;
-
-      // Controlla se utente esiste già
-      const existingUser = await findUserByEmail(email);
-      if (existingUser) {
-        return res.status(400).json({ error: 'Email già registrata' });
-      }
-
-      // Crea nuovo utente
-      const newUser = await createUser(username, email, password);
-
-      // Genera JWT token
-      const token = jwt.sign(
-        { userId: newUser.id, email: newUser.email },
-        process.env.JWT_SECRET,
-        { expiresIn: '7d' }
-      );
-
-      res.status(201).json({
-        message: 'Utente registrato con successo',
-        token,
-        user: {
-          id: newUser.id,
-          username: newUser.username,
-          email: newUser.email
-        }
-      });
-    } catch (error) {
-      console.error('Errore registrazione:', error);
-      res.status(500).json({ error: 'Errore durante la registrazione' });
-    }
-  }
-);
+// Registrazione - DISABILITATA (solo admin può creare utenti da database)
+router.post('/register', async (req, res) => {
+  res.status(403).json({ 
+    error: 'Registrazione disabilitata. Contatta l\'amministratore per creare un account.' 
+  });
+});
 
 // Login
 router.post('/login',

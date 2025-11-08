@@ -1,16 +1,13 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import Gallery from '../components/Gallery';
 import ImageDetail from '../components/ImageDetail';
 import { getAllPhotos } from '../config/api';
-import { useAuth } from '../context/AuthContext';
 
 function Home() {
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const { isAuthenticated } = useAuth();
 
   // Carica foto dal backend
   useEffect(() => {
@@ -86,27 +83,9 @@ function Home() {
 
   return (
     <div className="home-page">
-      {/* Admin Button */}
-      {isAuthenticated && (
-        <Link to="/admin" className="admin-floating-btn">
-          [ ADMIN ]
-        </Link>
-      )}
-      
-      {!isAuthenticated && (
-        <Link to="/login" className="login-floating-btn">
-          [ LOGIN ]
-        </Link>
-      )}
-
       {photos.length === 0 ? (
         <div className="empty-gallery">
           <h2>[ NESSUNA FOTO ANCORA ]</h2>
-          {isAuthenticated && (
-            <Link to="/admin" className="cta-btn">
-              [ CARICA LA PRIMA FOTO ]
-            </Link>
-          )}
         </div>
       ) : (
         <Gallery photos={photos} onPhotoClick={handlePhotoClick} />
