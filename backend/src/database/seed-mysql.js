@@ -149,14 +149,24 @@ async function seedDatabase() {
     }
 
     console.log(`\n✨ Seeding completato! ${astronomicalObjects.length} oggetti inseriti.\n`);
-    await pool.end();
-    process.exit(0);
   } catch (error) {
     console.error('❌ Errore durante il seeding:', error);
-    await pool.end();
-    process.exit(1);
+    throw error;
   }
 }
 
-seedDatabase();
+// Esegui solo se chiamato direttamente
+if (import.meta.url === `file://${process.argv[1]}`) {
+  seedDatabase()
+    .then(() => {
+      pool.end();
+      process.exit(0);
+    })
+    .catch(() => {
+      pool.end();
+      process.exit(1);
+    });
+}
+
+export default seedDatabase;
 

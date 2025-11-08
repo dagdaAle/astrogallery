@@ -24,8 +24,7 @@ async function seedUsers() {
       console.log(`   Username: ${existingUser.rows[0].username}`);
       console.log(`   ID: ${existingUser.rows[0].id}`);
       console.log('\n💡 Usa queste credenziali per il login.\n');
-      await pool.end();
-      process.exit(0);
+      return;
     }
 
     // Hash password
@@ -47,15 +46,24 @@ async function seedUsers() {
     console.log('   └─────────────────────────────────────────┘');
     console.log('\n🌐 Vai su http://localhost:5173/login per accedere\n');
     console.log('⚠️  IMPORTANTE: Cambia la password in produzione!\n');
-
-    await pool.end();
-    process.exit(0);
   } catch (error) {
     console.error('❌ Errore durante creazione utente:', error);
-    await pool.end();
-    process.exit(1);
+    throw error;
   }
 }
 
-seedUsers();
+// Esegui solo se chiamato direttamente
+if (import.meta.url === `file://${process.argv[1]}`) {
+  seedUsers()
+    .then(() => {
+      pool.end();
+      process.exit(0);
+    })
+    .catch(() => {
+      pool.end();
+      process.exit(1);
+    });
+}
+
+export default seedUsers;
 

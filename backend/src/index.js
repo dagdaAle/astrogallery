@@ -8,6 +8,7 @@ import userRoutes from './routes/userRoutes.js';
 import astronomicalObjectRoutes from './routes/astronomicalObjectRoutes.js';
 import astrophotoRoutes from './routes/astrophotoRoutes.js';
 import openaiRoutes from './routes/openaiRoutes.js';
+import { initDatabase } from './database/initDatabase.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -77,7 +78,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`
 ╔═══════════════════════════════════════════╗
 ║  🌌 AstroGallery API Server               ║
@@ -86,6 +87,11 @@ app.listen(PORT, () => {
 ║  📡 Health: http://localhost:${PORT}/api/health ║
 ╚═══════════════════════════════════════════╝
   `);
+  
+  // Inizializza database al primo avvio
+  if (process.env.NODE_ENV === 'production') {
+    await initDatabase();
+  }
 });
 
 export default app;
