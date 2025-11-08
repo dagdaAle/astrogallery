@@ -1,0 +1,134 @@
+.simple-admin-page {
+  min-height: 100vh;
+  background: #000;
+}
+
+/* Header */
+.simple-admin-header {
+  border-bottom: 2px solid #ffffff;
+  padding: 20px;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.header-left h1 {
+  font-size: 1.8rem;
+  color: #ffffff;
+  margin-bottom: 5px;
+  letter-spacing: 2px;
+}
+
+.header-left p {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.header-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-gallery,
+.btn-logout {
+  background: #000;
+  border: 1px solid;
+  padding: 10px 20px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+}
+
+.btn-gallery {
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.btn-gallery:hover {
+  background: #ffffff;
+  color: #000;
+}
+
+.btn-logout {
+  border-color: #ff0000;
+  color: #ff0000;
+}
+
+.btn-logout:hover {
+  background: #ff0000;
+  color: #ffffff;
+}
+
+/* Navigation */
+.simple-admin-nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px solid #333;
+}
+
+.nav-btn {
+  background: transparent;
+  border: 1px solid #333;
+  color: #888;
+  padding: 12px 30px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+}
+
+.nav-btn:hover {
+  border-color: #666;
+  color: #ffffff;
+}
+
+.nav-btn.active {
+  border-color: #ffffff;
+  color: #ffffff;
+  background: #0a0a0a;
+}
+
+/* Content */
+.simple-admin-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.content-section h2 {
+  font-size: 1.3rem;
+  color: #ffffff;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #333;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .simple-admin-nav {
+    flex-direction: column;
+  }
+  
+  .nav-btn {
+    width: 100%;
+  }
+}
+

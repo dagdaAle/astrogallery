@@ -1,0 +1,135 @@
+.manage-photos {
+  max-width: 1200px;
+}
+
+.loading,
+.error-message,
+.no-photos {
+  text-align: center;
+  padding: 60px 20px;
+  color: #888;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+.no-photos p {
+  margin: 10px 0;
+}
+
+.photos-count {
+  margin-bottom: 30px;
+  padding: 15px;
+  border: 1px solid #333;
+  color: #ffffff;
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
+
+.photos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .photos-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.photo-card {
+  border: 1px solid #333;
+  background: #000;
+  transition: border-color 0.3s ease;
+}
+
+.photo-card:hover {
+  border-color: #666;
+}
+
+.photo-image {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+
+.photo-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-info {
+  padding: 20px;
+  border-top: 1px solid #222;
+  border-bottom: 1px solid #222;
+}
+
+.photo-info h4 {
+  color: #ffffff;
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.photo-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.photo-meta span {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+.photo-description {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #1a1a1a;
+  color: #666;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.photo-actions {
+  display: flex;
+  gap: 10px;
+  padding: 15px;
+}
+
+.btn-edit,
+.btn-delete {
+  flex: 1;
+  background: #000;
+  border: 1px solid;
+  color: #ffffff;
+  padding: 10px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+}
+
+.btn-edit {
+  border-color: #ffffff;
+}
+
+.btn-edit:hover {
+  background: #ffffff;
+  color: #000;
+}
+
+.btn-delete {
+  border-color: #ff0000;
+  color: #ff0000;
+}
+
+.btn-delete:hover {
+  background: #ff0000;
+  color: #ffffff;
+}
+

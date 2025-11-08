@@ -1,0 +1,350 @@
+.detail-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.detail-container {
+  background: #000000;
+  border: 2px solid #ffffff;
+  max-width: 1600px;
+  width: 100%;
+  max-height: 90vh;
+  position: relative;
+  animation: slideUp 0.3s ease;
+  overflow: hidden;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #000000;
+  border: 2px solid #ffffff;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s ease, color 0.3s ease;
+  color: #ffffff;
+}
+
+.close-button:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+.detail-content {
+  display: flex;
+  height: 90vh;
+  max-height: 90vh;
+}
+
+@media (max-width: 1024px) {
+  .detail-content {
+    flex-direction: column;
+    height: auto;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+}
+
+.detail-image-section {
+  flex: 1;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-right: 2px solid #ffffff;
+}
+
+@media (max-width: 1024px) {
+  .detail-image-section {
+    border-right: none;
+    border-bottom: 2px solid #ffffff;
+  }
+}
+
+.detail-image-section img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: contrast(1.1);
+  /* Ottimizzato per foto verticali */
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Tablet - più spazio per l'immagine */
+@media (max-width: 1024px) {
+  .detail-image-section {
+    height: 60vh; /* Aumentato per foto verticali */
+    min-height: 400px;
+  }
+  
+  .detail-image-section img {
+    object-fit: contain; /* Mostra tutta l'immagine */
+  }
+}
+
+/* Mobile - ottimizzato per visualizzazione verticale */
+@media (max-width: 768px) {
+  .detail-overlay {
+    padding: 0;
+  }
+  
+  .detail-container {
+    max-height: 100vh;
+    height: 100vh;
+    border: none;
+  }
+  
+  .detail-content {
+    max-height: 100vh;
+  }
+  
+  .detail-image-section {
+    height: 55vh; /* Più spazio per foto verticali su mobile */
+    min-height: 300px;
+  }
+  
+  .close-button {
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+  }
+}
+
+.detail-info-section {
+  /* Ridotto da 500px a 380px per dare più spazio all'immagine */
+  flex: 0 0 380px;
+  padding: 25px;
+  overflow-y: auto;
+  background: #000000;
+}
+
+/* Desktop grande - ancora più spazio per l'immagine */
+@media (min-width: 1600px) {
+  .detail-info-section {
+    flex: 0 0 420px;
+    padding: 30px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .detail-info-section {
+    flex: 1;
+    padding: 20px;
+  }
+}
+
+/* Header */
+.detail-header {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #333;
+}
+
+.detail-header h1 {
+  font-size: 1.4rem; /* Ridotto da 1.6rem */
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 8px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.5px; /* Ridotto da 1px */
+}
+
+.detail-header h1::before {
+  content: '>> ';
+  color: #888;
+}
+
+.catalog-id {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.detail-description {
+  font-size: 0.9rem;
+  color: #aaa;
+  line-height: 1.6;
+}
+
+/* Sezioni - compattate per ottimizzare spazio */
+.detail-section {
+  margin-bottom: 20px; /* Ridotto da 25px */
+  padding-bottom: 15px; /* Ridotto da 20px */
+  border-bottom: 1px solid #222;
+}
+
+.detail-section:last-child {
+  border-bottom: none;
+}
+
+.detail-section h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 15px;
+  letter-spacing: 2px;
+}
+
+/* Info Grid */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 600px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.info-item {
+  background: transparent;
+  border: 1px solid #333;
+  padding: 10px 12px;
+  transition: border-color 0.2s ease;
+}
+
+.info-item:hover {
+  border-color: #666;
+}
+
+.info-item label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 5px;
+}
+
+.info-item p {
+  font-size: 0.85rem;
+  color: #ffffff;
+  font-weight: 400;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.info-item p.composition {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Facts List */
+.facts-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.facts-list li {
+  font-size: 0.85rem;
+  color: #aaa;
+  padding: 8px 12px;
+  border: 1px solid #333;
+  margin-bottom: 8px;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.facts-list li:hover {
+  border-color: #666;
+  color: #ffffff;
+}
+
+/* Capture Data */
+.capture-data {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 2px solid #333;
+}
+
+.capture-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.capture-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  padding: 8px 0;
+  border-bottom: 1px solid #222;
+}
+
+.capture-item:last-child {
+  border-bottom: none;
+}
+
+.capture-item span {
+  color: #888;
+  font-weight: 500;
+}
+
+.capture-item p {
+  color: #ffffff;
+  margin: 0;
+  text-align: right;
+}
+
+/* Scrollbar styling */
+.detail-info-section::-webkit-scrollbar {
+  width: 6px;
+}
+
+.detail-info-section::-webkit-scrollbar-track {
+  background: #000;
+  border-left: 1px solid #222;
+}
+
+.detail-info-section::-webkit-scrollbar-thumb {
+  background: #ffffff;
+  border: 1px solid #000;
+}
+
+.detail-info-section::-webkit-scrollbar-thumb:hover {
+  background: #ccc;
+}

@@ -1,0 +1,95 @@
+.app {
+  min-height: 100vh;
+  background: #000000;
+}
+
+.home-page {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Floating Buttons */
+.admin-floating-btn,
+.login-floating-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #000000;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.admin-floating-btn:hover,
+.login-floating-btn:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+.login-floating-btn {
+  border-color: #888;
+  color: #888;
+}
+
+.login-floating-btn:hover {
+  border-color: #ffffff;
+  background: #ffffff;
+  color: #000000;
+}
+
+/* Loading & Error States */
+.loading-message,
+.error-message,
+.empty-gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  padding: 20px;
+}
+
+.loading-message h2,
+.error-message h2,
+.empty-gallery h2 {
+  color: #ffffff;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+}
+
+.error-message h2 {
+  color: #ff4444;
+}
+
+.cta-btn {
+  display: inline-block;
+  background: #000000;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  padding: 15px 30px;
+  text-decoration: none;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+.cta-btn:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
